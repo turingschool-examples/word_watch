@@ -16,7 +16,8 @@ class WordWatch {
     text.split(' ').forEach((word) => {
       results[word] = results[word] + 1 || 1 
     })
-    WordWatchHelper.postSubmissionResults(results)
+    WordWatchHelper.addSubmissionResults(results)
+    WordWatchService.postResults(results)
   }
 }
 

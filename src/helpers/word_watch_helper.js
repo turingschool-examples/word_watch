@@ -13,7 +13,7 @@ class WordWatchHelper {
     return $('.text-submission').find('textarea').val()
   }
 
-  postSubmissionResults(results) {
+  addSubmissionResults(results) {
     Object.keys(results).forEach((word) => {
       let frequency = results[word]
       let $article = $('article.word-count')
