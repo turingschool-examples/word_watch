@@ -9,6 +9,19 @@ class WordWatchHelper {
     $topWordHeader.text($topWordHeader.text() + `${word} (${value})`)
   }
 
+  getSubmissionText() {
+    return $('.text-submission').find('textarea').val()
+  }
+
+  postSubmissionResults(results) {
+    Object.keys(results).forEach((word) => {
+      let frequency = results[word]
+      let $article = $('article.word-count')
+      $article.append(`<p data-word=${word}>${word}</p>`)
+      $article.find(`[data-word=${word}]`)[0].style = `font-size: ${frequency}em`
+    })
+  }
+
 }
 
 module.exports = new WordWatchHelper()

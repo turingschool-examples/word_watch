@@ -9,6 +9,15 @@ class WordWatch {
         WordWatchHelper.addTopWord(response)
       })
   }
+
+  breakDown() {
+    let text = WordWatchHelper.getSubmissionText()
+    let results = {}
+    text.split(' ').forEach((word) => {
+      results[word] = results[word] + 1 || 1 
+    })
+    WordWatchHelper.postSubmissionResults(results)
+  }
 }
 
 module.exports = new WordWatch()
