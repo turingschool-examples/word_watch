@@ -26,4 +26,7 @@ module.exports = {
   devServer: {
     contentBase: "./docs"
   }
+  prodServer: {
+    contentBase: "./docs"
+  }
 };
