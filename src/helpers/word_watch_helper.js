@@ -10,13 +10,14 @@ class WordWatchHelper {
   }
 
   getSubmissionText() {
-    return $('.text-submission').find('textarea').val()
+    return $('.text-submission').find('textarea').val().toLowerCase()
   }
 
   addSubmissionResults(results) {
+    let $article = $('article.word-count')
+    $article.children().remove()
     Object.keys(results).forEach((word) => {
       let frequency = results[word]
-      let $article = $('article.word-count')
       $article.append(`<p data-word=${word}>${word}</p>`)
       $article.find(`[data-word=${word}]`)[0].style = `font-size: ${frequency}em`
     })

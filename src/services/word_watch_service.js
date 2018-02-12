@@ -10,11 +10,11 @@ class WordWatchService {
 
   postResults(results) {
     Object.keys(results).forEach((word) => {
-      let payload = { word: { value: word } }
+      let payload = { word:{ value: word }}
       fetch(this.api_base + 'words', {
         method: 'POST',
         headers: {
-          'Content-type': 'application/json'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload)
       })
