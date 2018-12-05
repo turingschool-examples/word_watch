@@ -25,5 +25,11 @@ $(document).ready(() => {
         word: { value: word }
       })
     })
+    .then(response => response.json())
+    .then(json => displayMessages(json))
+    .catch(error => console.log(error))
   })
+  function displayMessages(data) {
+    $('.messages').text(data.message)
+  }
 })
