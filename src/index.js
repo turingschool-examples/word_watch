@@ -1,14 +1,23 @@
 import $ from 'jquery'
 
-fetch('https://wordwatch-api.herokuapp.com/api/v1/top_word')
+var startingTopWord = "";
+var endingTopWord = "";
+
+const fetchTopWord = () => {
+  fetch('https://wordwatch-api.herokuapp.com/api/v1/top_word')
 .then(response => response.json())
 .then(response => displayTopWord(response))
 .catch(error => console.error({ error }));
+}
 
 const displayTopWord = (wordResponse) => {
-  const topWord = Object.keys(wordResponse.word)[0];
-  const topWordCount = Object.values(wordResponse.word)[0];
-  $('.top-word').children("h3").after(`<p>${topWord} occurs ${topWordCount} times!</p>`)
+  if (startingTopWord === "") {
+  startingTopWord = Object.keys(wordResponse.word)[0];
+}
+endingTopWord = Object.keys(wordResponse.word)[0];
+const topWordCount = Object.values(wordResponse.word)[0];
+  $('.top-word').children("h3").text("")
+  $('.top-word').children("h3").after(`<p>${endingTopWord} occurs ${topWordCount} times!</p>`)
 }
 
 $("#break-down").on("click", () => {
@@ -25,6 +34,14 @@ $("#break-down").on("click", () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     })
-    .then(response => console.log(response.json()));
+    .then(response => console.log(response.json()))
+    .then(fetchTopWord);
   });
+  if ( endingTopWord === startingTopWord ) {
+    $("#user-notify").html("<h3>Thanks for submitting! Your word is not yet the top word. Keep trying!</h3>")
+  } else {
+    $("#user-notify").html("<h3>CONGRATULATIONS! Your word is now the TOP WORD!</h3>")
+  };
 });
+
+fetchTopWord();
