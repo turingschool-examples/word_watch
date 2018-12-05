@@ -15,21 +15,24 @@ $(document).ready(() => {
 
   $('#submit-word').on('click', function() {
     var word = $('#word-input').val()
-
-    fetch('https://wordwatch-api.herokuapp.com/api/v1/words', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        word: { value: word }
+    var split_word = word.split(" ");
+    split_word.forEach(function(word) {
+      fetch('https://wordwatch-api.herokuapp.com/api/v1/words', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          word: { value: word }
+        })
       })
+      .then(response => response.json())
+      .then(json => displayMessages(json))
+      .catch(error => console.log(error))
     })
-    .then(response => response.json())
-    .then(json => displayMessages(json))
-    .catch(error => console.log(error))
   })
+
   function displayMessages(data) {
-    $('.messages').text(data.message)
+    $('.messages').append(`<p>${data.message}</p>`)
   }
 })
