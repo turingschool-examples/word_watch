@@ -15,7 +15,7 @@ $(document).ready(() => {
 
   $('#submit-word').on('click', function() {
     var word = $('#word-input').val()
-    var split_word = word.split(" ").filter(function(each) {
+    var split_word = word.replace(/[^\w*]/g," ").split(" ").filter(function(each) {
       return each != ""
     })
     split_word.forEach(function(word) {
