@@ -10,5 +10,6 @@ $(document).ready(() => {
 function topWord(data) {
   var word = Object.keys(data.word)[0]
   var value = data.word[word];
-  $('.top-word').append(`<p>${word} is the most popular word with ${value} entries</p>`)
+  $('.top-word').append(`<p>${word} is the most popular word </p>`)
+  $('.word-count').append(`<p>Count : ${value} </p>`)
 }
