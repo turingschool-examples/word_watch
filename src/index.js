@@ -11,7 +11,7 @@ fetch('https://wordwatch-api.herokuapp.com/api/v1/top_word')
 const displayWord = (word) => {
   const topWord = Object.keys(word.word)[0];
   const topWordCount = Object.values(word.word)[0];
-  $('.top-word').append(`<p>${topWord}: ${topWordCount}</p>`);
+  $('.top-word h3').append(`"${topWord}" = ${topWordCount} times`);
 }
 
 })
