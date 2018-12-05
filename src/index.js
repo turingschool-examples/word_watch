@@ -15,7 +15,9 @@ $(document).ready(() => {
 
   $('#submit-word').on('click', function() {
     var word = $('#word-input').val()
-    var split_word = word.split(" ");
+    var split_word = word.split(" ").filter(function(each) {
+      return each != ""
+    })
     split_word.forEach(function(word) {
       fetch('https://wordwatch-api.herokuapp.com/api/v1/words', {
         method: 'post',
