@@ -81,8 +81,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
 
 
+
+function  presentWord() {
+  fetch('https://wordwatch-api.herokuapp.com/api/v1/top_word', {
+    method: "GET",
+    redirect: 'follow',
+    headers: {
+      'Accept': 'application/json',  'Content-Type': 'application/json' },
+  })
+  .then(res => res.json())
+  .then(data => {
+    var wordKey = Object.keys(data.word)[0]
+    var text = `<h3 class="top">${wordKey}, Times listed: ${data.word[wordKey]}</h3>`
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.top-word').append(text);
+  })
+}
+
 __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(() => {
-  // have fun!
+  presentWord();
 })
 
 
