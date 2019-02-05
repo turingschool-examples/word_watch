@@ -13,7 +13,6 @@ const getTopWord = () => {
   fetch(url)
   .then((response) => response.json())
   .then((data) => {
-    // debugger
     displayTopWord(data)
   })
   .catch(error => {
@@ -25,10 +24,6 @@ const getTopWord = () => {
 const displayTopWord = (data) => {
   $("#top-word").html('')
   $('#top-word').append(`
-    <h2> ${Object.keys(data.word)} </h2>
-  `)
-  $("#top-word-score").html('')
-  $('#top-word-score').append(`
-    <h2> ${Object.values(data.word)} </h2>
+    <h2>${Object.keys(data.word)}: ${Object.values(data.word)}</h2>
   `)
 }
