@@ -5,6 +5,11 @@ var wordRequest = new XMLHttpRequest();
 
 $(document).ready(() => {
   getTopWord();
+  var breakDown = document.getElementsByClassName("break-down-button")
+
+  breakDown[0].addEventListener("click", function(){
+    postText()
+  });
 })
 
 function getTopWord() {
@@ -24,8 +29,9 @@ function appendTopWord(word_data) {
 }
 
 function postText() {
-  var text = $("#text-field").val()
   debugger;
+
+  var text = $("#text-field").val()
   // var body = {name: foodName, calories: foodCals};
 
   $.ajax({
@@ -35,7 +41,3 @@ function postText() {
     dataType: "json"
   })
 }
-
-$("#break-down").click(function (){
-  postText()
-})
