@@ -5,6 +5,11 @@ var wordRequest = new XMLHttpRequest();
 
 $(document).ready(() => {
   getTopWord();
+  var breakDown = document.getElementsByClassName("break-down-button")
+
+  breakDown[0].addEventListener("click", function(){
+    postText()
+  });
 })
 
 function getTopWord() {
@@ -20,5 +25,22 @@ function getTopWord() {
 function appendTopWord(word_data) {
   var top_word = Object.keys(word_data.word);
   var word_count = word_data.word[top_word]
-  $("#top-word").append(`🎉${top_word}!🎉 Frequency of use: ${word_count}`)
+  $("#top-word").append(`🎉${top_word}🎉 Frequency of use: ${word_count}`)
+}
+
+function postText() {
+  var text = $("#text-field").val()
+  var text_array = text.split(" ");
+
+  for(var i=0; i<text_array.length; i++){
+    var body = {word: { value: text_array[i] } };
+
+    $.ajax({
+      type:"POST",
+      url: apiURL + "/words",
+      data: body,
+      dataType: "application/json"
+    })
+  }
+  location.reload();
 }
