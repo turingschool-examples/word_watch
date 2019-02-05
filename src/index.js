@@ -35,12 +35,21 @@ function postText() {
   for(var i=0; i<text_array.length; i++){
     var body = {word: { value: text_array[i] } };
 
+    var successful = 0;
+
     $.ajax({
       type:"POST",
       url: apiURL + "/words",
       data: body,
+      success: successful +=1,
       dataType: "application/json"
     })
   }
   location.reload();
+
+  if(successful >= 1) {
+    alert("You word(s) have been posted!")
+  } else {
+    alert("You post was unsuccessful!")
+  }
 }
