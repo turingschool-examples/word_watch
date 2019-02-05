@@ -23,8 +23,12 @@ const getTopWord = () => {
 
 
 const displayTopWord = (data) => {
+  $("#top-word").html('')
+  $('#top-word').append(`
+    <h2> ${Object.keys(data.word)} </h2>
+  `)
   $("#top-word-score").html('')
   $('#top-word-score').append(`
-    <h2> ${data.word.keys} </h2>
+    <h2> ${Object.values(data.word)} </h2>
   `)
 }
