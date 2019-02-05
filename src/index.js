@@ -19,7 +19,6 @@ function getTopWord() {
 
 function appendTopWord(word_data) {
   var top_word = Object.keys(word_data.word);
-  var word_count = word_data.word.top_word
-  debugger;
-  
+  var word_count = word_data.word[top_word]
+  $("#top-word").append(`🎉${top_word}!🎉 Frequency of use: ${word_count}`)
 }
