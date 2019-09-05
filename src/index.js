@@ -7,4 +7,10 @@ $(document).ready(() => {
     .then(top_word => displayWord(top_word))
     .catch((error) => console.error({ error }))
 
+    const displayWord = (input) => {
+      var word = Object.keys(input.word)[0];
+      var wordCount = Object.values(input.word)[0];
+      return $('.top-word h3').append(`"${word}", ${wordCount} times`);
+    }
+    
 })
