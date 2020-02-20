@@ -60,4 +60,4 @@ typings/
 
 # Other
 .sass-cache
-
+.DS_Store
